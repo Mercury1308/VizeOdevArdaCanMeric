@@ -3,14 +3,13 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText; //Skor yazımız
 
-    // Skoru dışarıdan alıp ekrana yazdıran public bir fonksiyon
-    public void UpdateScoreDisplay(int currentScore)
+    public void UpdateScoreDisplay(int currentScore)//Skorumuzu diğer koddan alıyoruz
     {
         if (scoreText != null)
         {
-            scoreText.text = "Skor: " + currentScore;
+            scoreText.text = "Skor: " + currentScore;//Skor + sayı yapıyoruz
         }
     }
 }
