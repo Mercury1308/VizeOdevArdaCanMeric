@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 public class Collecter : MonoBehaviour
@@ -7,17 +9,29 @@ public class Collecter : MonoBehaviour
     public int targetScore = 50;
 
     [SerializeField] private UIManager uiManager; //Scripti çağırıyoruz
+    [SerializeField] private AudioSource audiosource;
+    [SerializeField] private AudioClip triggerclip;
+
+    private void Awake()
+    {
+        if (audiosource == null)
+        {
+            audiosource = GetComponent<AudioSource>();
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Green"))
         {
+            audiosource.PlayOneShot(triggerclip);
             //Eğer yeşil topsa 10 puan eklensin
             score += 10;
             Destroy(other.gameObject);//sahneden sil
         }
         else if (other.CompareTag("Red"))
         {
+            audiosource.PlayOneShot(triggerclip);
             //Eğer kırmızı topsa 5 puan eksilsin
             score -= 5;
             Destroy(other.gameObject);//sahneden sil
